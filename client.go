@@ -3,6 +3,7 @@ package ufc
 import (
 	"encoding/json"
 	"io/ioutil"
+	"strconv"
 )
 
 type Client struct {
@@ -35,19 +36,40 @@ func (c *Client) Get(url string) ([]byte, error) {
 	return body, err
 }
 
-func (c *Client) Fighters() ([]Fighter, error) {
-	url := getEndpoint("fighters")
-
-	var fighters []Fighter
+func (c *Client) GetResponse(url string, i interface{}) error {
 	body, err := c.Get(url)
 	if err != nil {
-		return fighters, err
+		return err
 	}
 
-	err = json.Unmarshal(body, &fighters)
+	err = json.Unmarshal(body, i)
 	if err != nil {
-		return fighters, err
+		return err
+	}
+
+	return nil
+}
+
+func (c *Client) Fighters() ([]Fighter, error) {
+	url := getEndpoint("fighters")
+	var fighters []Fighter
+
+	err := c.GetResponse(url, &fighters)
+	if err != nil {
+		return nil, err
 	}
 
 	return fighters, nil
+}
+
+func (c *Client) Fighter(id int) (Fighter, error) {
+	url := getEndpoint("fighters/" + strconv.Itoa(id) + ".json")
+	var fighter Fighter
+
+	err := c.GetResponse(url, &fighter)
+	if err != nil {
+		return fighter, err
+	}
+
+	return fighter, nil
 }

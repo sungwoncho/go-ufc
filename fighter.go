@@ -20,4 +20,34 @@ type Fighter struct {
 	RightFullBodyImage string `json:"right_full_body_image"`
 	ProfileImage       string `json:"profile_image"`
 	Link               string `json:"link"`
+
+	// attributes below are only present on single fighter
+	CityResiding             string  `json:"city_residing"`
+	Dob                      string  `json:"dob"`
+	StoreLink                string  `json:"store_link"`
+	Height                   int     `json:"height"`
+	CountryResiding          string  `json:"country_residing"`
+	KoTkoWins                int     `json:"ko_tko_wins"`
+	SubmissionWins           int     `json:"submission_wins"`
+	DecisionWins             int     `json:"decision_wins"`
+	WeightKg                 int     `json:"weight_kg"`
+	AverageFightTime         float32 `json:"AverageFightTime"`
+	AverageFightTime_Seconds float32 `json:"AverageFightTime_Seconds"`
+	KDAverage                float32 `json:"KDAverage"`
+	SLpM                     float32 `json:"SLpM"`
+	StrikingAccuracy         float32 `json:"StrikingAccuracy"`
+	SApM                     float32 `json:"SApM"`
+	StrikingDefense          float32 `json:"StrikingDefense"`
+	TakedownAverage          float32 `json:"TakedownAverage"`
+	TakedownAccuracy         float32 `json:"TakedownAccuracy"`
+	TakedownDefense          float32 `json:"TakedownDefense"`
+	SubmissionsAverage       float32 `json:"SubmissionsAverage"`
+	avg_SLpM                 float32 `json:"avg_SLpM"`
+	max_SLpM                 float32 `json:"max_SLpM"`
+	avg_SApM                 float32 `json:"avg_SApM"`
+	max_SApM                 float32 `json:"max_SApM"`
+	avg_TD                   float32 `json:"avg_TD"`
+	max_TD                   float32 `json:"max_TD"`
+	avg_submission_attempts  float32 `json:"avg_submission_attempts"`
+	max_submission_attempts  float32 `json:"max_submission_attempts"`
 }

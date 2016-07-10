@@ -15,7 +15,7 @@ type Event struct {
 	TitleTagLine             string  `json:"title_tag_line"`
 	TwitterHashtag           string  `json:"twitter_hashtag"`
 	TicketGeneralSaleDate    string  `json:"ticket_general_sale_date"`
-	statid                   int     `json:"statid"`
+	Statid                   int     `json:"statid"`
 	FeatureImage             string  `json:"feature_image"`
 	EventTimeText            string  `json:"event_time_text"`
 	TicketGeneralSaleText    string  `json:"ticket_general_sale_text"`

@@ -42,12 +42,12 @@ type Fighter struct {
 	TakedownAccuracy         float32 `json:"TakedownAccuracy"`
 	TakedownDefense          float32 `json:"TakedownDefense"`
 	SubmissionsAverage       float32 `json:"SubmissionsAverage"`
-	avg_SLpM                 float32 `json:"avg_SLpM"`
-	max_SLpM                 float32 `json:"max_SLpM"`
-	avg_SApM                 float32 `json:"avg_SApM"`
-	max_SApM                 float32 `json:"max_SApM"`
-	avg_TD                   float32 `json:"avg_TD"`
-	max_TD                   float32 `json:"max_TD"`
-	avg_submission_attempts  float32 `json:"avg_submission_attempts"`
-	max_submission_attempts  float32 `json:"max_submission_attempts"`
+	AvgSLpM                  float32 `json:"avg_SLpM"`
+	MaxSLpM                  float32 `json:"max_SLpM"`
+	AvgSApM                  float32 `json:"avg_SApM"`
+	MaxSApM                  float32 `json:"max_SApM"`
+	AvgTD                    float32 `json:"avg_TD"`
+	MaxTD                    float32 `json:"max_TD"`
+	AvgSubmissionAttempts    float32 `json:"avg_submission_attempts"`
+	MaxSubmissionAttempts    float32 `json:"max_submission_attempts"`
 }

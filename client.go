@@ -3,20 +3,22 @@ package ufc
 import (
 	"encoding/json"
 	"io/ioutil"
+	"net/http"
 	"strconv"
 )
 
 type Client struct {
-	*Config
+	BaseUrl    string
+	HTTPClient *http.Client
 }
 
-func New(config *Config) *Client {
-	c := &Client{Config: config}
+func New() *Client {
+	c := &Client{
+		BaseUrl:    "http://ufc-data-api.ufc.com/api/v3/us/",
+		HTTPClient: http.DefaultClient,
+	}
+
 	return c
-}
-
-func getEndpoint(path string) string {
-	return "http://ufc-data-api.ufc.com/api/v3/us/" + path
 }
 
 func (c *Client) Get(url string) ([]byte, error) {
@@ -51,7 +53,7 @@ func (c *Client) GetResponse(url string, i interface{}) error {
 }
 
 func (c *Client) Fighters() ([]Fighter, error) {
-	url := getEndpoint("fighters")
+	url := c.BaseUrl + "fighters"
 	var fighters []Fighter
 
 	err := c.GetResponse(url, &fighters)
@@ -63,7 +65,7 @@ func (c *Client) Fighters() ([]Fighter, error) {
 }
 
 func (c *Client) Fighter(id int) (Fighter, error) {
-	url := getEndpoint("fighters/" + strconv.Itoa(id) + ".json")
+	url := c.BaseUrl + "fighters/" + strconv.Itoa(id) + ".json"
 	var fighter Fighter
 
 	err := c.GetResponse(url, &fighter)
@@ -72,4 +74,28 @@ func (c *Client) Fighter(id int) (Fighter, error) {
 	}
 
 	return fighter, nil
+}
+
+func (c *Client) Events() ([]Event, error) {
+	url := c.BaseUrl + "events"
+	var events []Event
+
+	err := c.GetResponse(url, &events)
+	if err != nil {
+		return events, err
+	}
+
+	return events, nil
+}
+
+func (c *Client) Event(id int) (Event, error) {
+	url := c.BaseUrl + "events/" + strconv.Itoa(id) + ".json"
+	var event Event
+
+	err := c.GetResponse(url, &event)
+	if err != nil {
+		return event, err
+	}
+
+	return event, nil
 }
